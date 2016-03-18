@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, CarbonTabSwipeNavigationDelegate {
     }
     
     func style() {
-        var color: UIColor = UIColor(red: 24.0 / 255, green: 75.0 / 255, blue: 152.0 / 255, alpha: 1)
+        let color: UIColor = UIColor(red: 24.0 / 255, green: 75.0 / 255, blue: 152.0 / 255, alpha: 1)
         self.navigationController!.navigationBar.translucent = false
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.barTintColor = color
@@ -39,9 +39,9 @@ class HomeViewController: UIViewController, CarbonTabSwipeNavigationDelegate {
         carbonTabSwipeNavigation.toolbar.translucent = false
         carbonTabSwipeNavigation.setIndicatorColor(color)
         carbonTabSwipeNavigation.setTabExtraWidth(30)
-        carbonTabSwipeNavigation.carbonSegmentedControl.setWidth(80, forSegmentAtIndex: 0)
-        carbonTabSwipeNavigation.carbonSegmentedControl.setWidth(80, forSegmentAtIndex: 1)
-        carbonTabSwipeNavigation.carbonSegmentedControl.setWidth(80, forSegmentAtIndex: 2)
+        carbonTabSwipeNavigation.carbonSegmentedControl?.setWidth(80, forSegmentAtIndex: 0)
+        carbonTabSwipeNavigation.carbonSegmentedControl?.setWidth(80, forSegmentAtIndex: 1)
+        carbonTabSwipeNavigation.carbonSegmentedControl?.setWidth(80, forSegmentAtIndex: 2)
         
         carbonTabSwipeNavigation.setNormalColor(UIColor.blackColor().colorWithAlphaComponent(0.6))
         carbonTabSwipeNavigation.setSelectedColor(color, font: UIFont.boldSystemFontOfSize(14))
@@ -52,11 +52,11 @@ class HomeViewController: UIViewController, CarbonTabSwipeNavigationDelegate {
         
         switch index {
         case 0:
-            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerOne")! as! ViewControllerOne
+            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerOne") as! ViewControllerOne
         case 1:
-            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerTwo")! as! ViewControllerTwo
+            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerTwo") as! ViewControllerTwo
         default:
-            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerThree")! as! ViewControllerThree
+            return self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerThree") as! ViewControllerThree
         }
         
     }

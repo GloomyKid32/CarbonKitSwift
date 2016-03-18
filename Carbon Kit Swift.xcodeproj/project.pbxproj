@@ -200,6 +200,8 @@
 		4007A0B21C19B64400F3E764 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Melies Kubrick";
 				TargetAttributes = {
@@ -466,6 +468,7 @@
 				4007A0DE1C19B64400F3E764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4007A0DF1C19B64400F3E764 /* Build configuration list for PBXNativeTarget "Carbon Kit SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +477,7 @@
 				4007A0E11C19B64400F3E764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

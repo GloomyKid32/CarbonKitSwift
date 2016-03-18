@@ -26,7 +26,7 @@ class ViewControllerTwo: UIViewController, UICollectionViewDelegate, UICollectio
     }
 
     override func viewWillLayoutSubviews() {
-        var flowLayout: UICollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let flowLayout: UICollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.itemSize = CGSizeMake((self.view.frame.size.width - 30) / 2, 145)
     }
     
@@ -47,12 +47,12 @@ class ViewControllerTwo: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! UICollectionViewCell
+        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) 
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var viewT: ViewControllerThree = self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerThree")! as! ViewControllerThree
+        let viewT: ViewControllerThree = self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerThree") as! ViewControllerThree
         self.navigationController!.pushViewController(viewT, animated: true)
     }
     
