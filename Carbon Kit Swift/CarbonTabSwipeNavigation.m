@@ -287,6 +287,12 @@ UIPageViewControllerDataSource, UIScrollViewDelegate, UIToolbarDelegate>
 	[self.carbonSegmentedControl updateIndicatorWithAnimation:NO];
 	
 	[self callDelegateForCurrentIndex];
+
+//    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//        [self.view layoutIfNeeded];
+//    } completion:<#^(BOOL finished)completion#>: animations:^{
+//        [self.view layoutIfNeeded];
+//    }];
 }
 
 # pragma mark - ScrollView Delegate
@@ -502,21 +508,25 @@ UIPageViewControllerDataSource, UIScrollViewDelegate, UIToolbarDelegate>
 	}
 	
 	if (position == UIBarPositionTop) {
-		[constraints addObjectsFromArray:
-		 [NSLayoutConstraint
-		  constraintsWithVisualFormat:@"V:|[_toolbar]"
-		  options:0
-		  metrics:nil
-		  views:views]];
-	} else {
-		[constraints addObjectsFromArray:
-		 [NSLayoutConstraint
-		  constraintsWithVisualFormat:@"V:[_toolbar]|"
-		  options:0
-		  metrics:nil
-		  views:views]];
-	}
-	
+        _toolbarOffset = [NSLayoutConstraint constraintWithItem:_toolbar
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.view
+                                                      attribute:NSLayoutAttributeTop
+                                                     multiplier:1.0
+                                                       constant:0];
+    } else {
+
+        _toolbarOffset = [NSLayoutConstraint constraintWithItem:_toolbar
+                                                      attribute:NSLayoutAttributeBottom
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.view
+                                                      attribute:NSLayoutAttributeBottom
+                                                     multiplier:1.0
+                                                       constant:0];
+    }
+
+    [constraints addObject:_toolbarOffset];
 	[constraints addObjectsFromArray:
 	 [NSLayoutConstraint
 	  constraintsWithVisualFormat:@"H:|[_toolbar]|"
@@ -620,6 +630,10 @@ UIPageViewControllerDataSource, UIScrollViewDelegate, UIToolbarDelegate>
 - (void)setTabBarHeight:(CGFloat)height {
 	_toolbarHeight.constant = height;
 	[self.carbonSegmentedControl updateIndicatorWithAnimation:NO];
+}
+
+- (void)setTabBarOffset:(CGFloat)offset {
+    _toolbarOffset.constant = offset;
 }
 
 - (NSUInteger)currentTabIndex {

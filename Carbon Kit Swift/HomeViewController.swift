@@ -63,6 +63,31 @@ class HomeViewController: UIViewController, CarbonTabSwipeNavigationDelegate {
     
     func carbonTabSwipeNavigation(carbonTabSwipeNavigation: CarbonTabSwipeNavigation, didMoveAtIndex index: UInt) {
         NSLog("Did move at index: %ld", index)
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100), dispatch_get_main_queue()) { () -> Void in
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({ () -> Void in
+            if index == 2 {
+                carbonTabSwipeNavigation.setTabBarOffset(-carbonTabSwipeNavigation.toolbar.frame.size.height);
+                UIView.animateWithDuration(1,
+                    delay: 0,
+                    options: .BeginFromCurrentState,
+                    animations: { () -> Void in
+                        carbonTabSwipeNavigation.view.layoutIfNeeded()
+                    },
+                    completion: nil)
+
+            } else {
+                carbonTabSwipeNavigation.setTabBarOffset(0);
+                UIView.animateWithDuration(1,
+                    delay: 0,
+                    options: .BeginFromCurrentState,
+                    animations: { () -> Void in
+                        carbonTabSwipeNavigation.view.layoutIfNeeded()
+                    },
+                    completion: nil)
+                
+            }
+        })
+        CATransaction.commit()
     }
-    
 }

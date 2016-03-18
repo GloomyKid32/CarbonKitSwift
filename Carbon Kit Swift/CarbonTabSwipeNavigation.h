@@ -82,6 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableDictionary *viewControllers;
 @property (nonatomic) NSUInteger currentTabIndex;
 @property (nonatomic, strong) NSLayoutConstraint *toolbarHeight;
+@property (nonatomic, strong) NSLayoutConstraint *toolbarOffset;
 
 
 /**
@@ -153,6 +154,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param height TabBar height
  */
 - (void)setTabBarHeight:(CGFloat)height;
+
+/**
+ *  Set tab bar height
+ *
+ *  @param height TabBar height
+ */
+- (void)setTabBarOffset:(CGFloat)height;
 
 /**
  *  Set indicator height
