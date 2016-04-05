@@ -81,8 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableDictionary *viewControllers;
 @property (nonatomic) NSUInteger currentTabIndex;
-@property (nonatomic, strong) NSLayoutConstraint *toolbarHeight;
-@property (nonatomic, strong) NSLayoutConstraint *toolbarOffset;
 
 
 /**
@@ -147,6 +145,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithItems:(nullable NSArray *)items
 					  toolBar:(nonnull UIToolbar *)toolBar
 					 delegate:(nonnull id)target;
+
+- (void)setCurrentTabIndex:(NSUInteger)currentTabIndex animated:(BOOL)animated;
 
 /**
  *  Set tab bar height

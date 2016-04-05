@@ -44,7 +44,7 @@
 		
 		// Custimize segmented control
 		[self setTitleTextAttributes:@{
-				NSForegroundColorAttributeName : [self.tintColor colorWithAlphaComponent:0.8],
+				NSForegroundColorAttributeName : [self.tintColor colorWithAlphaComponent:0.8f],
 				NSFontAttributeName	: [UIFont boldSystemFontOfSize:14]
 			} forState:UIControlStateNormal];
 		[self setTitleTextAttributes:@{
@@ -90,8 +90,10 @@
 	
 	// Set the width of UISegmentedControl to fit all segments
 	rect.size.width = totalWidth;
-	self.frame = rect;
-	
+    self.frame = rect;
+    self.indicatorMinX = [self getMinXForSegmentAtIndex:self.selectedSegmentIndex];
+    self.indicatorWidth = [self getWidthForSegmentAtIndex:self.selectedSegmentIndex];
+
 	// Change images tint
 	[self syncImageTintColor];
 }
@@ -131,7 +133,7 @@
 	for (UIView *segment in self.segments) {
 		for (UIView *subView in segment.subviews) {
 			if ([subView isKindOfClass:[UIImageView class]]) {
-				if ([self.segments indexOfObject:segment] == self.selectedSegmentIndex) {
+				if ([self.segments indexOfObject:segment] == (NSUInteger)self.selectedSegmentIndex) {
 					subView.tintColor = _imageSelectedColor;
 				} else {
 					subView.tintColor = _imageNormalColor;
@@ -170,8 +172,8 @@
 #pragma mark - Actions
 
 - (void)segmentedTapped:(id)sender {
-	self.indicatorMinX = [self getMinXForSegmentAtIndex:self.selectedSegmentIndex];
-	self.indicatorWidth = [self getWidthForSegmentAtIndex:self.selectedSegmentIndex];
+    self.indicatorMinX = [self getMinXForSegmentAtIndex:self.selectedSegmentIndex];
+    self.indicatorWidth = [self getWidthForSegmentAtIndex:self.selectedSegmentIndex];
 	[self updateIndicatorWithAnimation:YES];
 }
 

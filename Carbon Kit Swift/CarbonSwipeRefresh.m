@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, PullState) {
 	BOOL isFullyPulled;
 	PullState pullState;
 	
-	NSInteger colorIndex;
+	NSUInteger colorIndex;
 }
 @end
 
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, PullState) {
 		pathLayer.fillColor = nil;
 		pathLayer.lineWidth = 2.5;
 		
-		UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(20, 20) radius:9 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+		UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(20, 20) radius:9 startAngle:0 endAngle:(CGFloat)(2 * M_PI) clockwise:YES];
 		pathLayer.path = path.CGPath;
 		pathLayer.strokeStart = 1;
 		pathLayer.strokeEnd = 1;
@@ -230,7 +230,7 @@ typedef NS_ENUM(NSUInteger, PullState) {
 	
 	if (pullState == PullStateRefreshing) return;
 	
-	float newY = -contentOffset.y - 50;
+	CGFloat newY = -contentOffset.y - 50;
 	
 	if (contentOffset.y - marginTop > -100) {
 		isFullyPulled = NO;
@@ -264,7 +264,7 @@ typedef NS_ENUM(NSUInteger, PullState) {
 		[CATransaction begin];
 		[CATransaction setDisableActions:YES];
 		pathLayer.strokeStart = 1 - angle;
-		self.layer.opacity = angle * 2;
+		self.layer.opacity = (float)angle * 2;
 		[CATransaction commit];
 	}
 }
@@ -415,7 +415,7 @@ typedef NS_ENUM(NSUInteger, PullState) {
 }
 
 + (UIBezierPath *)bezierArrowFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint width:(CGFloat)width {
-	CGFloat length = hypotf(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+	CGFloat length = hypotf((float)(endPoint.x - startPoint.x), (float)(endPoint.y - startPoint.y));
 	
 	CGPoint points[3];
 	[self getAxisAlignedArrowPoints:points width:width length:length];
